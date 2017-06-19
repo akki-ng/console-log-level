@@ -61,12 +61,12 @@ module.exports = function (opts) {
 
       if (prefix) {
         if (typeof prefix === 'function') prefix = prefix()
-        // arguments[0] = util.format(prefix, stringify(arguments[0]))
+        arguments[0] = `[${prefix}] ${arguments[0]}`;
+        //util.format(prefix, stringify(arguments[0]))
       }else {
         prefix = "NGLOGGER"
       }
-
-      console[normalizedLevel](`[prefix] ${arguments}`))
+      console[normalizedLevel](...arguments)
     }
   })
 
