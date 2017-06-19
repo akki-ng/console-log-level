@@ -27,6 +27,8 @@ function stringify (anything) {
   }
   if (typeof anything === "string") {
     return '"' + anything + '"';
+  } else if(typeof anything == "undefined") {
+    anything = "undefined";
   }
   return anything.toString();
 }
@@ -59,10 +61,12 @@ module.exports = function (opts) {
 
       if (prefix) {
         if (typeof prefix === 'function') prefix = prefix()
-        arguments[0] = util.format(prefix, stringify(arguments[0]))
+        // arguments[0] = util.format(prefix, stringify(arguments[0]))
+      }else {
+        prefix = "NGLOGGER"
       }
 
-      console[normalizedLevel](util.format.apply(util, arguments))
+      console[normalizedLevel](`[prefix] ${arguments}`))
     }
   })
 
