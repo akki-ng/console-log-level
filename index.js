@@ -58,15 +58,14 @@ module.exports = function (opts) {
         case 'fatal': normalizedLevel = 'error'; break
         default: normalizedLevel = level
       }
-
+      var args = [...arguments];
       if (prefix) {
         if (typeof prefix === 'function') prefix = prefix()
-        arguments[0] = `[${prefix}] ${arguments[0]}`;
-        //util.format(prefix, stringify(arguments[0]))
+        args.splice(0, 0, `[${prefix}]`);
       }else {
         prefix = "NGLOGGER"
       }
-      console[normalizedLevel](...arguments)
+      console[normalizedLevel].apply( this, args )
     }
   })
 
