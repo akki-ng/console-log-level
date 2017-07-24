@@ -1,7 +1,5 @@
 'use strict'
 
-var util = require('util')
-
 var levels = ['trace', 'debug', 'info', 'warn', 'error', 'fatal']
 var noop = function () {}
 
